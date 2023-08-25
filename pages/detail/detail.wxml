@@ -1,0 +1,39 @@
+<view class="container">
+    <image class="goodsimgs" src="{{image}}" background-size="cover"></image>
+  <!-- 分享 -->
+  <view class='goods_name'>
+    <view class='goods_name_left jhx_f10'>{{mealName}}</view>
+  </view>
+
+  <view class="goods-info">
+    <view class="c">
+      <text class="desc jhx_f11">{{mealDescription}}</text>
+      <view class="price">
+        <view class="retailPrice jhx_f8">套餐评分:4  </view>
+        <view class="retailPrice jhx_f8">供应商评分:5</view>
+      </view>
+    </view>
+  </view>
+
+
+  <view class="goods-attr">
+    <view class="t jhx_f4">商品参数</view>
+        <text class="left">供应商名称</text>
+        <text class="right">有限公司</text>
+        <text class="left">供应商地址</text>
+        <text class="right">五棵松晋至源</text>
+        <text class="left">供应商电话</text>
+        <text class="right">123456</text>
+        <text class="left">供应商邮箱</text>
+        <text class="right">{{supplierMail}}</text>
+  </view>
+</view>
+
+
+<!-- 底部按钮 -->
+<view class="bottom-btn">
+  <view class="l l-collect" bindtap="addCollectOrNot" wx:if="{{!isGroupon}}">
+    <image class="icon" src="{{ collectImage }}"></image>
+  </view>
+  <view class="r" bindtap="addToCart" wx:if="{{!soldout}}" wx:if="{{!isGroupon}}">加入餐池</view>
+</view>
