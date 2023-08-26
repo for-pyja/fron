@@ -1,11 +1,11 @@
-var WxApiRoot = 'http://localhost:8081/';
-// var WxApiRoot = 'http://192.168.1.103:8081/';
-
+var WxApiRoot = 'http://zzfron.w1.luyouxia.net/';
 module.exports = {
+  ChooseMeal:WxApiRoot + '/ouye/server/user/add',//选择套餐
   IndexUrl: WxApiRoot + 'home/index', //首页数据接口
   CatalogList: WxApiRoot + 'catalog/index', //分类目录全部分类数据接口
+  updateCommentValue:WxApiRoot + '/ouye/server/user/score', //员工评价接口
   CatalogCurrent: WxApiRoot + 'catalog/current', //分类目录当前分类数据接口
-
+  GetHistoryListItem: WxApiRoot +'ouye​/server​/user​/list​/history​',//查看历史套餐
   AuthLoginByWeixin: WxApiRoot + 'auth/login_by_weixin', //微信登录
   AuthLoginByAccount: WxApiRoot + 'auth/login', //账号登录
   AuthLogout: WxApiRoot + 'auth/logout', //账号登出
@@ -16,7 +16,10 @@ module.exports = {
 
   GoodsCount: WxApiRoot + 'goods/count', //统计商品总数
   MealPool: WxApiRoot + 'ouye/server/meal/pool/available', //获得餐池列表
+  addMealPool: WxApiRoot + 'ouye/server/meal/pool/add', //添加套餐到当日餐池  
   SuppliersList: WxApiRoot + 'ouye/server/supplier/list', //获得供应商列表
+  AddVender:WxApiRoot + '/ouye/server/supplier/add', //添加供应商
+  getSelectedMeal:WxApiRoot + '/ouye/server/meal/pool/list', //查询已选套餐,员工
   MealList: WxApiRoot + 'ouye/server/meal/list', //获得套餐列表
   MealDetail: WxApiRoot + 'ouye/server/meal/detail', //获得套餐详情
   GoodsCategory: WxApiRoot + 'goods/category', //获得分类数据
@@ -95,13 +98,16 @@ module.exports = {
   GetUserCoupon: WxApiRoot + 'coupon/getUserCoupon',//用户个人可领取优惠券查询
 
   StorageUpload: WxApiRoot + 'storage/upload', //图片上传,
-
-  UserIndex: WxApiRoot + 'user/index', //个人页面用户相关信息
+UserIndex: WxApiRoot + 'user/index', //个人页面用户相关信息
+GetHistoryOrderBarCode: WxApiRoot + '/ouye/server/user/code/', //获取历史点餐码
   BrokerageMain: WxApiRoot + 'brokerage/main',//佣金收益主页面
   SettleOrderList: WxApiRoot + 'brokerage/settleOrderList',//佣金收益主页面
   ApplyWithdrawal: WxApiRoot + 'brokerage/applyWithdrawal',//佣金提现申请
   ExtractList: WxApiRoot + 'brokerage/extractList',//佣金账号提现记录
   ArticleDetail: WxApiRoot + 'article/detail',//公告详情
   ApplyAgency: WxApiRoot + 'user/applyAgency',//代理申请
-  GetSharedUrl: WxApiRoot + 'user/getSharedUrl' //获取推广二维码
+  GetSharedUrl: WxApiRoot + 'user/getSharedUrl' ,//获取推广二维码
+
+  addMeal: WxApiRoot + 'ouye/server/meal/add' ,//添加套餐
+
 };

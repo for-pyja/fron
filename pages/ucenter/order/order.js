@@ -1,24 +1,82 @@
 var util = require('../../../utils/util.js');
 var api = require('../../../config/api.js');
-
 Page({
   data: {
+    listUrl: "",
+    isAdmin: false,
     orderList: [],
     showType: 0,
     page: 1,
     size: 10,
-    totalPages: 1
+    totalPages: 1,
+    orderList: {}
   },
-  onLoad: function(options) {
+  onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
     let that = this
+    that.getHistoryList()
+    that.initUserStatusInfo()
     try {
       var tab = wx.getStorageSync('tab');
       this.setData({
         showType: tab
       });
     } catch (e) {}
+    // 加载list
+  },
+  initUserStatusInfo() {
+    var that = this
+    let userLoginInfo = wx.getStorageSync("userInfo")
+    if (userLoginInfo) {
+      console.log("userLoginInfo", userLoginInfo)
+      that.setData({
+        userInfo: userLoginInfo
+      })
+      // 0是普通用户,1是管理
+      if (that.data.userInfo.userLevel) {
+        that.setData({
+          isAdmin: true
+        })
+      } else {
+        that.setData({
+          isAdmin: false
+        })
+      }
+    }
+  },
+  getHistoryList() {
 
+    var that = this;
+    // 管理员
+    if (that.data.isAdmin) {
+      that.data.listUrl = 'http://zzfron.w1.luyouxia.net:80/ouye/server/user/list/history/' + '1'
+    } else {
+      // 员工
+      that.data.listUrl = api.getSelectedMeal
+    }
+    util.request(that.data.listUrl)
+      .then(function (res) {
+        console.log("rss", res)
+        that.setData
+        that.setData({
+          historyGoodsList: that.data.orderList.concat(res),
+          total: res[0].total
+        });
+      });
+    let userId = 1
+    console.log("(api.GetHistoryListItem", api.GetHistoryListItem)
+    util.request(api.GetHistoryListItem, userId).then(function (res) {
+      console.log("res", res)
+      // if (res.errno === 0) {
+      //   console.log(res.data);
+      //   that.setData({
+      //     orderList: that.data.orderList.concat(res.data.data),
+      //     totalPages: res.data.totalPages
+      //   });
+      // }
+    });
+    // ​/ouye​/server​/user​/list​/history​/{id}
+    // 查看历史套餐
   },
   getOrderList() {
     let that = this;
@@ -26,7 +84,7 @@ Page({
       showType: that.data.showType,
       page: that.data.page,
       size: that.data.size
-    }).then(function(res) {
+    }).then(function (res) {
       if (res.errno === 0) {
         console.log(res.data);
         that.setData({
@@ -51,7 +109,7 @@ Page({
       return false;
     }
   },
-  switchTab: function(event) {
+  switchTab: function (event) {
     let showType = event.currentTarget.dataset.index;
     this.setData({
       orderList: [],
@@ -198,14 +256,16 @@ Page({
       }
     });
   },
-  detailExpress:function(e){
+  detailExpress: function (e) {
     let orderId = e.currentTarget.dataset.index;
-    wx.navigateTo({url:'/pages/ucenter/expressInfo/expressInfo?orderId=' + orderId});
+    wx.navigateTo({
+      url: '/pages/ucenter/expressInfo/expressInfo?orderId=' + orderId
+    });
   },
-  onReady: function() {
+  onReady: function () {
     // 页面渲染完成
   },
-  onShow: function() {
+  onShow: function () {
     this.setData({
       orderList: [],
       page: 1,
@@ -214,10 +274,10 @@ Page({
     });
     this.getOrderList();
   },
-  onHide: function() {
+  onHide: function () {
     // 页面隐藏
   },
-  onUnload: function() {
+  onUnload: function () {
     // 页面关闭
   }
 })

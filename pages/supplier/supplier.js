@@ -3,18 +3,20 @@ var api = require('../../config/api.js');
 
 Page({
   data: {
+    isAdmin:false,
     goodsList: [],
     scrollLeft: 0,
     scrollTop: 0,
     scrollHeight: 0,
     page: 1,
     size: 10,
+
     total: 1
   },
   onLoad: function (options) {
     // 页面初始化 options为页面跳转所带来的参数
     var that = this;
-
+    that.initUserStatusInfo()  
     wx.getSystemInfo({
       success: function (res) {
         that.setData({
@@ -36,6 +38,26 @@ Page({
   },
   onHide: function () {
     // 页面隐藏
+  },
+  initUserStatusInfo(){
+    var that=this
+    let userLoginInfo=wx.getStorageSync("userInfo")
+    if(userLoginInfo){
+      console.log("userLoginInfo",userLoginInfo)
+  that.setData({
+    userInfo:userLoginInfo
+  })
+  // 0是普通用户,1是管理
+  if(that.data.userInfo.userLevel){
+    that.setData({
+      isAdmin:true
+    })
+  }else{
+    that.setData({
+      isAdmin:false
+    })
+  }
+    }
   },
   getSupplerList: function () {
     var that = this;

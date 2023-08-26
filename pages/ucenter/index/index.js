@@ -7,9 +7,14 @@ Page({
    * 页面的初始数据
    */
   data: {
+  historyOrderBarCode:"",
+     isAdmin:false,
       userInfo: {
         nickName: '点击登录',
-        avatarUrl: '/static/images/avatar.png'
+        avatarUrl: '/static/images/avatar.png',
+        userLevelDesc:"" ,//用户类型
+        nickName:"",//用户名
+        userLevel:""//用户等级,
       },
       order: {
         unpaid: 0,
@@ -29,7 +34,51 @@ Page({
       hasLogin: false,
       totalAmount: 0.00
   },
+  /**
+   * 历史取餐
+   */
+  initUserHistoryOderBarCode(){
+    var that=this
+    util.request(api.GetHistoryOrderBarCode+"/"+that.data.userInfo.userId).then(function (res) {
+      let historyOrderBarCode=res
+      that.setData({
+        historyOrderBarCode:historyOrderBarCode
+      })
+      // if (res.errno === 0) {
+      //   that.setData({
+      //     order: res.data.order,
+      //     totalAmount: res.data.totalAmount,
+      //     remainAmount: res.data.remainAmount,
+      //     couponCount: res.data.couponCount
+      //   });
+      // }
+    });
 
+  },
+  /**
+   * 初始化用户登录信息
+   */
+initUserStatusInfo(){
+  var that=this
+  let userLoginInfo=wx.getStorageSync("userInfo")
+  if(userLoginInfo){
+    console.log("userLoginInfo",userLoginInfo)
+that.setData({
+  userInfo:userLoginInfo
+})
+// 0是普通用户,1是管理
+if(that.data.userInfo.userLevel){
+  that.setData({
+    isAdmin:true
+  })
+}else{
+  that.setData({
+    isAdmin:false
+  })
+}
+that.initUserHistoryOderBarCode()
+  }
+},
   /**
    * 页面跳转
   */
@@ -50,7 +99,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-   
+    var that=this
+    that.initUserStatusInfo()
   },
 
   /**

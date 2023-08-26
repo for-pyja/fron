@@ -1,7 +1,9 @@
 {
   "pages": [
-
     "pages/supplier/supplier",
+    "pages/addVender/addVender",
+    "pages/addMeal/addMeal",
+    "pages/welcome/welcome",
     "pages/index/index",
     "pages/meal/meal",
     "pages/mealPool/mealPool",
@@ -58,6 +60,10 @@
   "navigationBarTextStyle": "white",
   "backgroundColor": "#FFFFFF",
   "backgroundTextStyle": "dark"
+},
+"usingComponents": {
+  "van-button": "vant-weapp/button"
+
 },
   "tabBar": {
     "backgroundColor": "#fafafa",

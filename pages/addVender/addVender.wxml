@@ -1,0 +1,21 @@
+<!--pages/addVender/addVender.wxml-->
+<!-- 添加供应商 -->
+<form bindsubmit="formSubmit" bindreset="formReset" class="form">
+    <view class="section section_gap">
+        <view class="section__title"><i style="color:red;">*</i>供应商名称</view>
+        <input name="venderName" bindinput="bindVenderNameInput" placeholder="示例:好利来" placeholder-style=" line-height:72rpx" />
+    </view>
+    <view class="section section_gap">
+        <view class="section__title"><i style="color:red;">*</i>联系电话</view>
+        <input name="venderPhoneNumber" bindinput="bindPhoneNumberInput" placeholder="示例:9999999" placeholder-style=" line-height:72rpx" />
+    </view>
+    <view class="section section_gap">
+        <view class="section__title"><i style="color:red;">*</i>邮箱</view>
+        <input name="venderEmail" bindinput="bindEmailInput" placeholder="示例:holilai.com" placeholder-style=" line-height:72rpx" />
+    </view>
+    <view class="section section_gap">
+        <view class="section__title"><i style="color:red;">*</i>供应商地址</view>
+        <input name="venderLocation" bindinput="bindLocationInput" placeholder="示例:北京朝阳" placeholder-style=" line-height:72rpx" />
+    </view>
+    <button class="btn" bindtap="submit">添加供应商</button>
+</form>

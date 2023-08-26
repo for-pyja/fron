@@ -3,7 +3,8 @@
     <view class="item {{ showType == 0 ? 'active' : ''}}" bindtap="switchTab" data-index='0'>
       <view class="txt">全部</view>
     </view>
-    <view class="item {{ showType == 1 ? 'active' : ''}}" bindtap="switchTab" data-index='1'>
+
+    <!-- <view class="item {{ showType == 1 ? 'active' : ''}}" bindtap="switchTab" data-index='1'>
       <view class="txt">待付款</view>
     </view>
     <view class="item {{ showType == 2 ? 'active' : ''}}" bindtap="switchTab" data-index='2'>
@@ -14,8 +15,29 @@
     </view>
     <view class="item {{ showType == 4 ? 'active' : ''}}" bindtap="switchTab" data-index='4'>
       <view class="txt">待评价</view>
-    </view>
+    </view> -->
   </view>
+
+      <!-- list展示 start -->
+      <block>
+        <view class="historyGoodsContainer" >
+      <scroll-view scroll-y="true" scroll-top="{{scrollTop}}" style="height:{{scrollHeight}};">
+        <view class="cate-item">
+          <view class="b">
+            <navigator class="item {{(iindex + 1) % 2 == 0 ? 'item-b' : ''}}" url="/pages/detail/detail?id={{iitem.mealId}}" wx:for="{{historyGoodsList}}" wx:key="id" wx:for-item="iitem" wx:for-index="iindex">
+              <image class="img" src="../../../static/images/meal.png" background-size="cover"></image>
+              <text class="name jhx_f2">{{iitem.mealName}}</text>
+              <text class="price jhx_f8">评分{{iitem.description?iitem.description:"--"}}</text>
+            </navigator>
+          </view>
+        </view>
+      </scroll-view>
+    </view>
+      </block>
+    <!-- list展示  end-->
+<!-- 已选套餐 -->
+
+</view>
   <view class="no-order" wx:if="{{orderList.length <= 0}}">
     <view class="c">
       <image src="/static/images/noCart.png" />
@@ -24,7 +46,7 @@
 
   <view class="orders">
     <view class="order" wx:for="{{orderList}}" wx:key="id">
-      <navigator url="../orderDetail/orderDetail?id={{item.id}}"  class="h">
+      <navigator url="../orderDetail/orderDetail?id={{item.id}}" class="h">
         <view class="l">订单编号：{{item.orderSn}}</view>
         <view class="r">{{item.orderStatusText}}</view>
       </navigator>
@@ -56,14 +78,14 @@
           <text class="cost">￥{{item.actualPrice}}</text>
         </view>
         <view class="r">
-        <view class="btn active" data-index="{{item.id}}" bindtap="cancelOrder" wx:if="{{item.handleOption.cancel}}">取消订单</view>
-        <view class="btn active" data-index="{{item.id}}" bindtap="payOrder" wx:if="{{item.handleOption.pay}}">去付款</view>
-        <view class="btn active" data-index="{{item.id}}" bindtap="detailExpress" wx:if="{{item.handleOption.confirm}}">查看物流</view>
-        <view class="btn active" data-index="{{item.id}}" bindtap="confirmOrder" wx:if="{{item.handleOption.confirm}}">确认收货</view>
-        <view class="btn active" data-index="{{item.id}}" bindtap="deleteOrder" wx:if="{{item.handleOption.delete}}">删除订单</view>
-        <view class="btn active" data-index="{{item.id}}" bindtap="refundOrder" wx:if="{{item.handleOption.refund}}">申请退款</view>
-      </view>
+          <view class="btn active" data-index="{{item.id}}" bindtap="cancelOrder" wx:if="{{item.handleOption.cancel}}">取消订单</view>
+          <view class="btn active" data-index="{{item.id}}" bindtap="payOrder" wx:if="{{item.handleOption.pay}}">去付款</view>
+          <view class="btn active" data-index="{{item.id}}" bindtap="detailExpress" wx:if="{{item.handleOption.confirm}}">查看物流</view>
+          <view class="btn active" data-index="{{item.id}}" bindtap="confirmOrder" wx:if="{{item.handleOption.confirm}}">确认收货</view>
+          <view class="btn active" data-index="{{item.id}}" bindtap="deleteOrder" wx:if="{{item.handleOption.delete}}">删除订单</view>
+          <view class="btn active" data-index="{{item.id}}" bindtap="refundOrder" wx:if="{{item.handleOption.refund}}">申请退款</view>
+        </view>
       </view>
     </view>
   </view>
-</view>
+  

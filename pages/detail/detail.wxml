@@ -1,5 +1,5 @@
 <view class="container">
-    <image class="goodsimgs" src="{{image}}" background-size="cover"></image>
+    <image class="goodsimgs" src="/static/images/meal.png" background-size="cover"></image>
   <!-- 分享 -->
   <view class='goods_name'>
     <view class='goods_name_left jhx_f10'>{{mealName}}</view>
@@ -8,10 +8,15 @@
   <view class="goods-info">
     <view class="c">
       <text class="desc jhx_f11">{{mealDescription}}</text>
-      <view class="price">
+      <view   class="price">
         <view class="retailPrice jhx_f8">套餐评分:4  </view>
-        <view class="retailPrice jhx_f8">供应商评分:5</view>
+        <!-- <view class="retailPrice jhx_f8">供应商评分:5</view> -->
       </view>
+<van-rate wx:if="{{!isAdmin}}"
+  value="{{ commentValue }}"
+  count="{{ 10 }}"
+  bind:change="onChangeCommentValue"
+/>
     </view>
   </view>
 
@@ -30,10 +35,17 @@
 </view>
 
 
-<!-- 底部按钮 -->
-<view class="bottom-btn">
+<!-- 底部按钮 管理员-->
+<view wx:if="{{isAdmin}}" class="bottom-btn">
   <view class="l l-collect" bindtap="addCollectOrNot" wx:if="{{!isGroupon}}">
     <image class="icon" src="{{ collectImage }}"></image>
   </view>
   <view class="r" bindtap="addToCart" wx:if="{{!soldout}}" wx:if="{{!isGroupon}}">加入餐池</view>
+</view>
+<!-- 底部按钮 员工-->
+<view wx:else class="bottom-btn">
+  <view class="l l-collect" bindtap="addCollectOrNot" wx:if="{{!isGroupon}}">
+    <image class="icon" src="{{ collectImage }}"></image>
+  </view>
+  <view class="r" bindtap="chooseMeal" wx:if="{{!soldout}}" wx:if="{{!isGroupon}}">选择套餐</view>
 </view>

@@ -38,7 +38,6 @@
 
 .goods-info {
   width: 750rpx;
-  height: 300rpx;
   overflow: hidden;
   background: #fff;
 }
@@ -321,6 +320,8 @@
 .goods-attr {
   width: 750rpx;
   height: auto;
+  /* 解决触底bug */
+  min-height: 500rpx; 
   overflow: hidden;
   padding: 0 31.25rpx 25rpx 31.25rpx;
   background: #fff;

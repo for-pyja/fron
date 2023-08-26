@@ -80,4 +80,4 @@ button::after{border:0;}
 .loading .text{position: relative;display: inline-block;padding: 0 20rpx;background: #fff;z-index: 2;color: #777;}
 
 .loadingicon .loading {animation: load linear 1s infinite;font-size:45rpx;color:#000;}
-.loadingicon{width:100%;height:80rpx;}
+.loadingicon{width:100%;height:80rpx;font-size: 18rpx;font-weight: 400;}

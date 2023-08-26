@@ -1,0 +1,15 @@
+<!--pages/welcome/welcome.wxml-->
+<!--pages/welcome.wxml-->
+<view class="container">
+<!--
+<image class="user-avator" src="/img/welcome.jpg"></image>
+-->
+<l-avatar class="l-avatar" shape="circle" placement="bottom" size="180" 
+          open-data="{{['userAvatarUrl','userNickName']}}"/>
+ <text class="user-name">hello</text>
+ <view class="moto-container" bind:tap="onTap" >
+ <!--bind:tap冒泡 catch:tap非冒泡-->
+  <text class="moto">欢迎来到这里</text>
+ </view>
+</view>
+

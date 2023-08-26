@@ -9,7 +9,10 @@ Page({
     scrollHeight: 0,
     page: 1,
     size: 10,
-    total: 1
+    total: 1,
+    iitem:{
+      imageAddress:"../../static/images/meal.png"
+    },
   },
   onLoad: function (options) {
 

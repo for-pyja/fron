@@ -1,0 +1,23 @@
+<!--pages/addMeal/addMeal.wxml-->
+<!-- 添加套餐 -->
+<!--pages/zizhushangbao/zizhushangbao.wxml-->
+<form bindsubmit="formSubmit" bindreset="formReset" class="form">
+    <view class="section section_gap">
+        <view class="section__title"><i style="color:red;">*</i>套餐名称</view>
+        <input name="title" bindinput="bindInput" placeholder="示例:轻食" placeholder-style=" line-height:72rpx" />
+    </view>
+    <view class="section section_gap">
+        <view class="section__title">供应商</view>
+        <picker bindchange="bindPickerChange" mode:value="{{typeIndex}}" range-key="value" range="{{type}}">
+            <view class="picker">
+                {{type[typeIndex].value}}
+            </view>
+        </picker>
+    </view>
+    <view class="section section_gap">
+        <view class="section__title"><i style="color:red;">*</i>套餐详情</view>
+        <textarea bindinput="bindTextAreaInput" auto-height placeholder="示例:沙拉" />
+    </view>
+    <button class="btn" bindtap="submit">添加套餐</button>
+</form>
+<!-- <van-button type="primary">按钮</van-button> -->

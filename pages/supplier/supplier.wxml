@@ -13,11 +13,28 @@
         <text class="name">{{currentCategory.name}}</text>
         <text class="desc">{{currentCategory.frontName}}</text>
       </view> -->
-      <view class="b">
+      <!-- <view class="b">
         <navigator class="item {{(iindex + 1) % 2 == 0 ? 'item-b' : ''}}"  url="/pages/meal/meal?id={{iitem.id}}" wx:for="{{goodsList}}" wx:key="id" wx:for-item="iitem" wx:for-index="iindex">
           <text class="name jhx_f2">{{iitem.name}}</text>
         </navigator>
+      </view> -->
+      <view class="b" wx:if="{{isAdmin}}">
+        <navigator class="addBox" url="/pages/addVender/addVender">
+          <view class="addBoxText">添加供应商</view>
+        </navigator>
+        <navigator class="addBox" url="/pages/addMeal/addMeal">
+          <text class="addBoxText">添加套餐</text>
+        </navigator>
       </view>
+      <block wx:else>
+      <view class="moto-container" bind:tap="onTap">
+        <!--bind:tap冒泡 catch:tap非冒泡-->
+        <text class="moto">Hello!{{userInfo.nickName}}</text>
+        <text class="moto">欢迎光临~</text>
+        </view>
+      <image src="../../static/images/welcomeFood.svg"></image>
+    </block>
+
     </view>
   </scroll-view>
 </view>

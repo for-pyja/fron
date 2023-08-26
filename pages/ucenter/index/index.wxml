@@ -23,7 +23,7 @@
             <view class='title'>用户类型</view>
             <view class='text'>
                <text class='iconfont icon-jingyanzhi' style="color:#FF654B;margin-right:8rpx;"></text>
-            员工
+            {{userInfo.userLevelDesc}}
             </view>
          </view>
          <!-- <view class='item' hover-class='none' wx:if="{{userInfo.userLevel==2}}" bindtap="goBrokerage">
@@ -86,11 +86,9 @@
                <view class='jhx_f4'>取餐码</view>
             </view>
             <view class='text'>
-               <text style="color:#FF654B;margin-right:8rpx;"></text>
-               12123
+               <text style="color:#FF654B;margin-right:8rpx;">{{historyOrderBarCode}}</text>
             </view>
          </view>
-
       </view>
       <!-- <view class='myService'>
          <view class='title acea-row row-middle jhx_f4'>我的服务</view>

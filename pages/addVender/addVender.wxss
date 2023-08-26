@@ -1,0 +1,95 @@
+/* pages/addVender/addVender.wxss */
+.form {
+  width: 100%;
+  padding: 30rpx 3%;
+  box-sizing: border-box;
+  display: block;
+}
+
+.btn {
+  display: block;
+  width: 100%;
+  background: #1989F7;
+  text-align: center;
+  margin-top: 40rpx;
+  height: 72rpx;
+  line-height: 72rpx;
+  border-radius: 10rpx;
+  color: #fff;
+  font-size: 32rpx;
+}
+
+.section {
+  width: 100%;
+  height: auto;
+  margin-bottom: 20rpx;
+}
+
+.section>view {
+  width: 100%;
+  height: 50rpx;
+  line-height: 50rpx;
+  font-size: 28rpx;
+}
+
+.section>text,
+.section>input,
+.section>picker {
+  display: block;
+  width: 100%;
+  height: 60rpx;
+  line-height: 60rpx;
+  background: #fff;
+  border-radius: 10rpx;
+  padding: 0 20rpx;
+  box-sizing: border-box;
+  border: none;
+}
+
+.section>textarea {
+  display: block;
+  width: 100%;
+  min-height: 120rpx;
+  line-height: 50rpx;
+  background: #fff;
+  border-radius: 10rpx;
+  padding: 10rpx 20rpx;
+  box-sizing: border-box;
+  border: none;
+}
+
+.icon-zengjia {
+  display: block;
+  width: 200rpx;
+  height: 200rpx;
+  border: 1px dashed #ddd;
+  text-align: center;
+  line-height: 200rpx;
+  font-size: 80rpx;
+  background: #fff;
+  color: #888;
+}
+
+.section>view.recode_upload_item {
+  width: auto;
+  height: auto;
+}
+
+.recode_upload_item>view {
+  width: 100%;
+  height: auto;
+  overflow: hidden;
+}
+
+.recode_upload_item>view image {
+  display: block;
+  width: 200rpx;
+  height: 200rpx;
+  float: left;
+  margin: 0 20rpx 20rpx 0;
+}
+
+.section__title {
+  color: #888;
+  font-size: 26rpx;
+}

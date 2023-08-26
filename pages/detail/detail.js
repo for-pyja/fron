@@ -6,8 +6,10 @@ var user = require('../../utils/user.js');
 
 Page({
   data: {
+    isAdmin:true,
+    commentValue:0,
     id: 1,
-    image: '/static/images/icon_like.png',
+    image: '/static/images/meal.png',
     mealName: '',
     mealDescription: '',
     mealScore: 5,
@@ -17,13 +19,91 @@ Page({
     supplierEmail: '',
     supplierScore: 5
   },
-
+  // 评分
+  onChangeCommentValue:function(event){
+    var that = this;
+    this.setData({
+      commentValue: event.detail
+    });
+    console.log("评分数值",that.data.commentValue)
+    let UpdateCommentParams={
+      mealId:that.data.id,
+      score:that.data.commentValue
+    }
+    // 加入餐池请求
+    // let idList=[that.data.id]
+    util.request(api.updateCommentValue, 
+      UpdateCommentParams
+    ).then(function (res) {
+      console.log("res",res)
+              wx.showToast({
+          title: '评分成功',
+        },2000)
+    });
+  },
+  initUserStatusInfo(){
+    var that=this
+    let userLoginInfo=wx.getStorageSync("userInfo")
+    if(userLoginInfo){
+      console.log("userLoginInfo",userLoginInfo)
+  that.setData({
+    userInfo:userLoginInfo
+  })
+  // 0是普通用户,1是管理
+  if(that.data.userInfo.userLevel){
+    that.setData({
+      isAdmin:true
+    })
+  }else{
+    that.setData({
+      isAdmin:false
+    })
+  }
+    }
+  },
+  chooseMeal: function () {
+    var that = this;
+    let chooseMealParams= {
+      description: that.data.mealDescription,
+      id: that.data.id,
+      imageAddress: that.data.supplierAddress,
+      name: that.data.name,
+      supplierId: '1' //拿不到供应商id
+    }
+    // 加入餐池请求
+    util.request(api.ChooseMeal 
+  ,chooseMealParams, 'POST').then(function (res) {
+              wx.showToast({
+          title: '添加套餐成功',
+          complete: function () {
+            wx.navigateBack();
+          }
+        },2000)
+    });
+  },
+  // 加入餐池
+  addToCart: function () {
+    var that = this;
+    // 加入餐池请求
+    // let idList=[that.data.id]
+    util.request(api.addMealPool, 
+      [that.data.id]
+    , 'POST').then(function (res) {
+              wx.showToast({
+          title: '加入餐池成功',
+          complete: function () {
+            wx.navigateBack();
+          }
+        },2000)
+    });
+  },
   // 获取商品信息
   getGoodsInfo: function () {
     var that = this;
     util.request(api.MealDetail, {
       id: that.data.id
     }).then(function (res) {
+      console.log("1111111111",res)
       that.setData({
         image: res.imageAddress,
         mealName: res.mealName,
@@ -46,6 +126,7 @@ Page({
       });
       this.getGoodsInfo();
     }
+this.initUserStatusInfo()
   },
 
   onShow: function () {
