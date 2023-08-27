@@ -13,7 +13,7 @@ Page({
         nickName: '点击登录',
         avatarUrl: '/static/images/avatar.png',
         userLevelDesc:"" ,//用户类型
-        nickName:"",//用户名
+        // nickName:"",//用户名
         userLevel:""//用户等级,
       },
       order: {
@@ -101,6 +101,7 @@ that.initUserHistoryOderBarCode()
   onLoad: function (options) {
     var that=this
     that.initUserStatusInfo()
+    console.log("that.data.admin",that.data.isAdmin)
   },
 
   /**
@@ -116,6 +117,8 @@ that.initUserHistoryOderBarCode()
     
   },
   onShow:function(){
+    var that=this
+    that.initUserStatusInfo()
     //获取用户的登录信息
     if (app.globalData.hasLogin) {
       let userInfo = wx.getStorageSync('userInfo');
@@ -136,6 +139,7 @@ that.initUserHistoryOderBarCode()
         }
       });
     }
+    that.initUserStatusInfo()
   },
 
   /**

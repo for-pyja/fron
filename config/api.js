@@ -15,7 +15,8 @@ module.exports = {
   AuthBindPhone: WxApiRoot + 'auth/bindPhone', //绑定微信手机号
 
   GoodsCount: WxApiRoot + 'goods/count', //统计商品总数
-  MealPool: WxApiRoot + 'ouye/server/meal/pool/available', //获得餐池列表
+  MealPoolAdmin: WxApiRoot + 'ouye/server/meal/pool/available', //获得餐池列表，管理员
+  MealPool: WxApiRoot + 'ouye/server/meal/pool/list', //获得餐池列表，人工
   addMealPool: WxApiRoot + 'ouye/server/meal/pool/add', //添加套餐到当日餐池  
   SuppliersList: WxApiRoot + 'ouye/server/supplier/list', //获得供应商列表
   AddVender:WxApiRoot + '/ouye/server/supplier/add', //添加供应商

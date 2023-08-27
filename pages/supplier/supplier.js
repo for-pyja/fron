@@ -24,17 +24,14 @@ Page({
         });
       }
     });
-
-
     that.getSupplerList();
-
   },
   onReady: function () {
     // 页面渲染完成
   },
   onShow: function () {
     // 页面显示
-    console.log(1);
+    this.initUserStatusInfo()  
   },
   onHide: function () {
     // 页面隐藏
@@ -48,7 +45,9 @@ Page({
     userInfo:userLoginInfo
   })
   // 0是普通用户,1是管理
+  console.log("that.data.userInfo.userLevel",that.data.userInfo.userLevel)
   if(that.data.userInfo.userLevel){
+
     that.setData({
       isAdmin:true
     })

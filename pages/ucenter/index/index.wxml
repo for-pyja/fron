@@ -39,7 +39,7 @@
             <view class='text'><text class='iconfont icon-youhuiquan' style="color:#FF654B;margin-right:8rpx;"></text>{{couponCount || 0}}</view>
          </view> -->
       </view>
-      <view class='myOrder'>
+      <view wx:if="{{!isAdmin}}" class='myOrder'>
          <view class='title acea-row row-between-wrapper'>
             <view class='jhx_f4'>我的历史</view>
             <!-- <view class='allOrder jhx_f6' hover-class='none' bindtap='goOrder'>全部订单<text class='iconfont icon-jiantou'></text></view> -->
